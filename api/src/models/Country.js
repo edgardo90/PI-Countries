@@ -5,9 +5,10 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('country', {
     id:{
-      type: DataTypes.CHAR(3),
-      allowNull: false,
-      primaryKey: true,
+      type: DataTypes.STRING,
+      allowNull: false, // pongo en false para que sea obligatorio poner algo
+      unique : true,
+      primaryKey: true, 
     },
     name: {
       type: DataTypes.STRING,
@@ -36,6 +37,10 @@ module.exports = (sequelize) => {
     population:{
       type: DataTypes.INTEGER,
       allowNull: true,
+    },
+    maps:{
+      type: DataTypes.STRING(1234),
+      allowNull: true
     }
   });
 };
