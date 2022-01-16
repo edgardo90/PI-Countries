@@ -3,6 +3,8 @@ const { Router } = require('express');
 // Ejemplo: const authRouter = require('./auth.js');
 const Country = require("../routes/Country.js")
 const Activity = require("../routes/Activity")
+const Continents = require("../routes/Continents")
+
 const axios = require("axios"); // requiero axios
 
 const router = Router();
@@ -11,6 +13,8 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 
 router.use("/countries", Country); // ruta de paises , traer pais/es por su nombre , traer pais por su id 
+
+router.use("/continents", Continents ) // ruta de continentes , trae en un array todos los continentes
 
 router.use("/activity", Activity); // ruta de actividad , creo una actividad
 

@@ -1,7 +1,7 @@
 // aca creo las rutas de paises(country) , traigo  las funciones desde la carpeta controller
 
 const {Router} = require("express"); // traigo Router de express
-const {getAll, getId}  = require("../controller/Country.controller.js"); // traigo las funciones por destructuring de mi carpeta y archivo que cree "../controller/Country.controller.js"
+const {getAll, getId }  = require("../controller/Country.controller.js"); // traigo las funciones por destructuring de mi carpeta y archivo que cree "../controller/Country.controller.js"
 const router = Router();
 
 

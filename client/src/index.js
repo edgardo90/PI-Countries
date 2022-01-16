@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//importo lo que esta abajo de esta linea
+import strore from "./store"
+import {Provider} from "react-redux"
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={strore} > {/*  */}
+      <App />
+    </Provider>  {/*  */}
   </React.StrictMode>,
   document.getElementById('root')
 );

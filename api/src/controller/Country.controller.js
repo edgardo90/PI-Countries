@@ -37,5 +37,18 @@ const getId = async(req, res)=>{ // trae un pais en particular por id
     return res.status(404).send("no esta ese id");
 }
 
-module.exports={getAll, getId , getApiInfo}
+const getContinents = async(req, res) =>{ // get para mostrar en un array todos los continentes
+    const paises = await getApiInfo()
+    let totalContinentes = paises.map(p =>{ // guardo todos los continentes de los paises
+        return p.continents
+    })
+    totalContinentes = totalContinentes.filter((element , index) =>{ // con esto elemino elementos duplicados , 
+        return totalContinentes.indexOf(element) === index;
+    } )
+    // console.log(totalContinentes)
+   return res.status(200).send(totalContinentes)
+}
+
+
+module.exports={getAll, getId , getContinents, getApiInfo}
 

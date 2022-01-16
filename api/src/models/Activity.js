@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     difficulty:{
-      type: DataTypes.ENUM, // es un array
+      type: DataTypes.ENUM, // es un array , que toma solo un valor que esta en "values:""
       allowNull: true,
       values: ["beginner", "amateur", "normal", "professional", "expert"], // niveles de difucltad
     },
@@ -18,8 +18,8 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     season: {
-      type: DataTypes.ENUM, // es un array
-      values:["summer", "autumn" , "winter" , "spring"], // "verano", "otoño" , "invierno" , "primavera"
+      type: DataTypes.ARRAY(DataTypes.STRING), // es un array , que toma tipo de dato string
+      // values:["summer", "autumn" , "winter" , "spring"], // "verano", "otoño" , "invierno" , "primavera"
       allowNull: true,
     },
   });
