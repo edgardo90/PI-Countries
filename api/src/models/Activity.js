@@ -19,7 +19,6 @@ module.exports = (sequelize) => {
     },
     season: {
       type: DataTypes.ARRAY(DataTypes.STRING), // es un array , que toma tipo de dato string
-      // values:["summer", "autumn" , "winter" , "spring"], // "verano", "otoño" , "invierno" , "primavera"
       allowNull: true,
     },
   });

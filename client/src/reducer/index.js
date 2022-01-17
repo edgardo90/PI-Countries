@@ -65,17 +65,28 @@ function reducer(state = initialState,{type , payload}){ // por destructuring tr
             }
 
         case FILTER_ACTIVITIES: // caso para filtrar por actividades
-            const todosPaises = state.copyCountries // traigo todos los paises utilizando "copyCountries"
-            const filterByActivities = payload === "All" ? todosPaises : //hago un ternario, si payload es igual a "All" muestro todos los paises
-            todosPaises.map(a => { let fil // sino hago un map iterar sobre "todosPaises"
-                for(let i in a.activities){ // hago un for in para iterar sobre activities(hago un for in porque activities es array de obejtos)
-                    if(a.activities[i].name === payload){ fil = a } // si se cumple la condicion guardo en una variable los paises que cumpla la condicion
-                }
-                return fil // retorno esa variable
-            }).filter(a => a); // hago un filter() para eleminar los undefined
+            const todosPaises = state.countries; // traigo todos los paises utilizando el state de countries
+            let filterByActivities;
+            if(payload === "todos"){            // si payload es igual a "todos" muestro todos los paises
+                filterByActivities = state.copyCountries // utilizando el state de copyCountries
+            }else if(payload === "All"){                // si payload es igual a "All" muestro todos los paises que tenga actividades
+                filterByActivities = todosPaises.map(t =>{ let fil  // hago un map iterar sobre "todosPaises" , creo una variable "fil" que despues la usare
+                    for(let i in t.activities){   // hago un for in para iterar sobre activities(hago un for in porque t.activities es un de obejto)
+                        if(t.activities[i]){fil=t} // si se cumple la condicion ,guardo en una variable los paises que cumpla la condicion
+                    }
+                    return fil;       // retorno esa variable
+                }).filter(t => t)   // hago un filter() para eleminar los undefined
+            }else{ // pero  si el payload tiene otro valor
+                filterByActivities = todosPaises.map(t =>{ let fil
+                    for(let i in t.activities){
+                        if(t.activities[i].name === payload ){fil=t}
+                    }
+                    return fil;
+                }).filter(t => t)
+            }
             return{
                 ...state,
-                countries : filterByActivities,
+                countries: filterByActivities,
             }
 
         case ORDER_BY_NAME: // caso para ordenar por nombre del pais y por poblacion 

@@ -27,6 +27,15 @@ export default function Home(){
     }
     // aca termino el paginado
 
+    // esto es para renderizar un msj con un timeout
+    const [time , setTime] = useState("")
+    useEffect(()=>{
+        setTimeout(()=>{
+            setTime("No hay paises")
+        },20000)
+    },[])
+    //aca termino el timeout
+
     useEffect(()=>{  // useEffect del get de paises ,  me a mostrar los paises en mi pagina
         dispatch(getCountries() );
     },[dispatch])
@@ -55,6 +64,7 @@ export default function Home(){
     return(
         <div>
             <div>
+                <button onClick={event => handleClick(event)} >Reload countries</button>
                 <Link to="/activity" ><button>Create activity</button></Link>
                 <Filtrado  /> {/* renderizo "Filtrado.jsx"  */}
                 <Ordenamiento // renderizo Ordenamiento.jsx
@@ -66,7 +76,7 @@ export default function Home(){
             <h1>Country app</h1> 
             <button onClick={event => handleClick(event)} style={{fontSize: 40}}>Country app</button>
             <div>
-                { currentCountries.map(a =>{
+                {currentCountries.length > 0  ? currentCountries.map(a =>{
                     // console.log(a)
                     return(
                         <div key={a.id}>
@@ -79,7 +89,12 @@ export default function Home(){
                             </Link>
                         </div>
                     )
-                })  }
+                })
+                 : <div> 
+                     <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/GIF_Mundo_Banderas.gif" alt="Loading" /> 
+                     <h1>{currentCountries.length < 1 && time} </h1> {/*si no hay nada para mostrar va mostrar el time  */}
+                 </div>
+                 }
             </div>
 
             <div>

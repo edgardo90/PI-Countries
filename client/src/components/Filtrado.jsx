@@ -33,7 +33,7 @@ export default function Filtrado(){
     return(
         <div>
             <select   onChange={event =>handleFilterContinets(event) } > {/* hago un onChange para que se aplique el cambio  */} 
-                <option value="All">All continents</option>
+                <option value="All">Filter by continents/ all continents</option>
                 {allContinets && allContinets.map(a =>{ // utilizo allContinents  para rendirizar todas los continentes 
                     return(
                         <option value={a} key={a} >{a}</option>
@@ -41,6 +41,7 @@ export default function Filtrado(){
                 } )}
             </select>
             <select  onChange={event => handleFilterActivities(event)} > {/* hago un onChange para que se aplique el cambio  */} 
+                <option value="todos" >Filter by activities/ all countries</option>
                 <option value="All">All activities</option>
                 {allActivities && allActivities.map(a =>{ // utilizo allContinents  para rendirizar todas los continentes
                     return(

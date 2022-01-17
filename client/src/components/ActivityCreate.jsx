@@ -6,6 +6,24 @@ import { Link , useNavigate } from "react-router-dom";
 import {getContinets,getCountries, filterContinets , postActivity } from "../actions";
 
 
+const regexNumber = /[A-Z\s]+$/i
+
+function validate(input){ // funcion para crear los errores
+    const errors={};
+    if(!input.name){
+        errors.name = "You must enter a name for the activity";
+    }else if(!regexNumber.test(input.name) ){
+        errors.name = "The name has to be only letters"
+    }
+    if (!input.duration) {
+        errors.duration = "You must enter a duration for the activity"
+    }else if (input.duration < 1 || input.duration > 4) {
+        errors.duration = "The duration has to be greater than 0 and less than 5"
+    }
+    return errors;
+}
+
+
 
 export function ActivityCreate(){
     const dispatch = useDispatch();
@@ -19,15 +37,16 @@ export function ActivityCreate(){
         season:[],
         country:[],
     })
+    const [errors , setErrors] = useState({})
     
     const difultad = ["beginner", "amateur", "normal", "professional", "expert"];
     const temporada = ["summer", "autumn" , "winter" , "spring"];
 
-    useEffect(()=>{   // useEffect del get de continentes ,  me a mostrar los continentes en mi pagina
+    useEffect(()=>{   // useEffect del get de continentes ,  me va a mostrar los continentes en mi pagina
         dispatch(getContinets());
     },[dispatch]);
 
-    useEffect(()=>{  // useEffect del get de paises ,  me a mostrar los paises en mi pagina
+    useEffect(()=>{  // useEffect del get de paises ,  me va a mostrar los paises en mi pagina
         dispatch(getCountries() );
     },[dispatch])
 
@@ -36,16 +55,20 @@ export function ActivityCreate(){
         dispatch(filterContinets(event.target.value)) // aca despacho la accion de filterContinets
     }
 
-    function handleChange(event){ // handle para el input del name y duration
+    function handleChange(event){ // handle para el input del name y duration , lo que se ponga en el front es valor que va tener el "data" del useState()
         setData(({
             ...data,
             [event.target.name]: event.target.value
         }))
         console.log(data)
+        setErrors(validate({ // errores 
+            ...data,
+            [event.target.name]: event.target.value
+        }))
     }
 
     
-    function handleRadio(event){ // handle para el radio del difficulty
+    function handleRadio(event){ // handle para el radio del difficulty , lo que se seleccione en el front es valor que va tener el "data" del useState()
         setData(({
             ...data,
             difficulty: event.target.value
@@ -55,7 +78,7 @@ export function ActivityCreate(){
     
     
     
-    function handleChekBox(event){ // handle para el chekbox del season
+    function handleChekBox(event){ // handle para el chekbox del season , el o los elementos que se en el front es valor que va tener el "data" del useState()
         // console.log(event.target)
         if(event.target.checked){ // si el event.target.checked es true , que se guarde en el array lo que se marco en el chekbox
             setData({
@@ -72,7 +95,8 @@ export function ActivityCreate(){
     }
 
     
-    function handleSelect(event){ // handle para el select del country , para el useState()
+    function handleSelect(event){ // handle para el select del country  para el useState() , el o los elementos que se en el front es valor que va tener el "data" del useState(
+        console.log(event.target)
         setData({
             ...data,
             country: [...data.country, event.target.value]
@@ -86,19 +110,24 @@ export function ActivityCreate(){
         })
     }
 
+    const contadorErrores = !data.difficulty || data.season.length === 0 || data.country.length === 0 ? 1 : 0
+    console.log(contadorErrores) 
 
-    function handleSubmit(event){
+    function handleSubmit(event){ // handle que envia la actividad que quiero crear
         event.preventDefault();
+        if (Object.values(errors).length > 0 || contadorErrores > 0  ) {
+            return alert("Check the errors that are in red !")
+        }
         dispatch(postActivity(data));
-        alert("Activity create!")
-        setData({
+        alert("Activity create!")  // un alerta que deci que se creo la actividad
+        setData({       // reinicio todos los valores
         name:"",
         duration:"",
         difficulty:"",
         season:[],
         country:[],
         })
-        navigate("/home")
+        navigate("/home") // vuelvo al home
     }
 
     
@@ -115,6 +144,9 @@ export function ActivityCreate(){
                     name="name"
                     onChange={event =>handleChange(event)} 
                     />
+                    {errors.name && 
+                     <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >{errors.name}</p>
+                     }
                </div>
                <br /> {/*Dejo un espacio  */}
                <div>
@@ -125,6 +157,9 @@ export function ActivityCreate(){
                    name="duration"
                    onChange={event =>handleChange(event)}
                    />
+                   {errors.duration &&
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >{errors.duration}</p> 
+                    }
                </div>
                <br /> {/*Dejo un espacio  */}
                <div> 
@@ -142,6 +177,9 @@ export function ActivityCreate(){
                            </label>
                        )
                    })}
+                   {!data.difficulty &&   // si no hay nada en dificultad va a mostrar el siguiente <p/>
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >select a difficulty </p>  
+                    }
                </div>
                <br />{/*Dejo un espacio  */}
                <div>
@@ -159,6 +197,9 @@ export function ActivityCreate(){
                            </label>
                        )
                    } )}
+                   {data.season.length === 0 &&   // si no hay nada temporada va a mostrar el siguiente <p/>
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >select a season </p>  
+                    }
                </div>
                <br />{/*Dejo un espacio  */}
                <div>
@@ -174,14 +215,20 @@ export function ActivityCreate(){
                      <option >Select country or countries</option>
                     {allCountries && allCountries.map(a => { // utilizo allCountries  para rendirizar todas los continentes 
                     return(
-                        <option value={a.id} key={a.id} >{a.name}</option>
+                        <option value={a.id}   key={a.id} >{a.name}</option>
                         )
                         } )}
                     </select>
+                    {data.country.length === 0 &&   // si no hay nada temporada va a mostrar el siguiente <p/>
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >select a country </p>  
+                    }
                 </div>
                 <br />
 
-                <button type="submit" >Crate activity</button>
+                <button  disabled={!data.difficulty || !data.name} 
+                type="submit" >
+                    Crate activity
+                </button>
            </form>
 
            <br />
@@ -189,7 +236,7 @@ export function ActivityCreate(){
                return(
                    <div key={c}>
                        <li >Aggregate country: {c}{" "} 
-                        <button onClick={() => handleDelete(c)} >X</button> {/*muestra un boton para eleminar el pais que se seleciono  */}
+                        <button key={c} onClick={() => handleDelete(c)} >X</button> {/*muestra un boton para eleminar el pais que se seleciono  */}
                        </li>
                    </div>
                )
