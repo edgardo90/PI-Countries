@@ -79,7 +79,7 @@ export function ActivityCreate(){
     
     
     function handleChekBox(event){ // handle para el chekbox del season , el o los elementos que se en el front es valor que va tener el "data" del useState()
-        // console.log(event.target)
+        // console.log(event.target.checked)
         if(event.target.checked){ // si el event.target.checked es true , que se guarde en el array lo que se marco en el chekbox
             setData({
                 ...data,
@@ -95,11 +95,13 @@ export function ActivityCreate(){
     }
 
     
-    function handleSelect(event){ // handle para el select del country  para el useState() , el o los elementos que se en el front es valor que va tener el "data" del useState(
-        console.log(event.target)
+    function handleSelect(event){ // handle para el select del country  para el useState() , el o los elementos que se en el front es valor que va tener el "data" del useState()
         setData({
             ...data,
-            country: [...data.country, event.target.value]
+            country : event.target.value === "nada" ? data.country  : // hago multiple ternario , si el event.target.value es igual a "nada" , que quede como este
+            !data.country.includes(event.target.value) ? //  si value no esta esta  en el array data.country , hago spread operator agregando el value
+            [...data.country , event.target.value]   : // sino(si esta ese valor) , que no haga nada que quede como esta(data.country)
+            data.country,
         })
         console.log(data)
     }
@@ -110,12 +112,11 @@ export function ActivityCreate(){
         })
     }
 
-    const contadorErrores = !data.difficulty || data.season.length === 0 || data.country.length === 0 ? 1 : 0
-    console.log(contadorErrores) 
-
+    const contadorErrores = !data.difficulty || data.season.length === 0 || data.country.length === 0 ? 1 : 0 // ternario de que si se cumple la condicion va tener valor 1 sino va ser 0
+  
     function handleSubmit(event){ // handle que envia la actividad que quiero crear
         event.preventDefault();
-        if (Object.values(errors).length > 0 || contadorErrores > 0  ) {
+        if (Object.values(errors).length > 0 || contadorErrores > 0  ) { // si los errores es mayor 0 , va tirar una alerta 
             return alert("Check the errors that are in red !")
         }
         dispatch(postActivity(data));
@@ -207,15 +208,15 @@ export function ActivityCreate(){
                    <option value="All">All continents</option>
                    {allContinets && allContinets.map(a =>{ // utilizo allContinents  para rendirizar todas los continentes 
                     return(
-                        <option value={a} key={a}>Countries of {a} </option>
+                        <option value={a} key={a} >Countries of {a} </option>
                          )
                          } )}
                     </select>
                     <select onChange={event =>handleSelect(event)} >
-                     <option >Select country or countries</option>
+                     <option value="nada" >Select country or countries</option>
                     {allCountries && allCountries.map(a => { // utilizo allCountries  para rendirizar todas los continentes 
                     return(
-                        <option value={a.id}   key={a.id} >{a.name}</option>
+                        <option value={a.id}  key={a.id}  >{a.name}</option>
                         )
                         } )}
                     </select>
@@ -225,10 +226,7 @@ export function ActivityCreate(){
                 </div>
                 <br />
 
-                <button  disabled={!data.difficulty || !data.name} 
-                type="submit" >
-                    Crate activity
-                </button>
+                <button  disabled={!data.name || !data.duration}  type="submit" > Crate activity </button>
            </form>
 
            <br />
@@ -236,7 +234,7 @@ export function ActivityCreate(){
                return(
                    <div key={c}>
                        <li >Aggregate country: {c}{" "} 
-                        <button key={c} onClick={() => handleDelete(c)} >X</button> {/*muestra un boton para eleminar el pais que se seleciono  */}
+                        <button   onClick={() => handleDelete(c)} >X</button> {/*muestra un boton para eleminar el pais que se seleciono  */}
                        </li>
                    </div>
                )

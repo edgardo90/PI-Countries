@@ -1,0 +1,82 @@
+.h1{
+    text-align: center; /*lo mueve al centro  */
+    margin-top: 8%;
+    color: rgb(27, 29, 122)  ;
+    font-size: 50px;
+    font-family: 'Cookie', cursive;
+  }
+
+  .selectAndButton{  /* aca lo que haga es lo que esta en ese div lo mueve hacia arriba y lo deja fijo */
+    height: 80px;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(160, 208, 212, 0.342);
+    display: flex;
+    position: fixed;
+    justify-content:space-between;
+    align-items: center;
+    box-sizing: border-box;
+    z-index: auto
+}
+
+
+.selectAndButton:hover{ /*cambia el color  */
+    background-color: rgba(27, 29, 122, 0.336);
+}
+
+select{ /* modifico los select  */
+    color: black;
+    border-radius: 7px;
+    border: none;
+}
+select:hover{ /*cambia cuando toco los select  */
+    background-color: rgba(160, 208, 212, 0.459);
+    color: white;
+    padding-left: 15px;/* agrando el button hacia la izquierda  */
+    padding-right: 15px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}
+
+button{
+    border: none;
+    border-radius: 7px;
+}
+button:hover{
+    background-color: rgba(160, 208, 212, 0.459);
+    color: white;
+    padding-left: 15px;/* agrando el button hacia la izquierda  */
+    padding-right: 15px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}
+
+
+.card{
+    /* border: 1px solid #999; */ 
+    box-sizing: border-box;
+    /* color: #444; */
+    color: white;
+    display: inline-block; /*lo deja en fila tipo en bloke, en este caso fila de 3  */
+    margin: 5%;
+    padding: 1em;
+    vertical-align: top;
+    width: 33,5%; /* hace que la fila este ordenada  */
+    /* background-color: white; */
+    /* background-color: black; */
+}
+
+
+
+.paginado{
+     display: flex;
+    display: inline-block;
+    justify-content:center;
+    margin-left: 29%;     /*muevo el button hacia la derecha  */
+}
+
+
+  

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../components/cssComponets/Card.module.css"
 
 
 export default function Card({name , flags , continents , population }){

@@ -10,6 +10,8 @@ import { Ordenamiento } from "./Ordenamiento";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
 
+import styles from "../components/cssComponets/Home.module.css"
+
 
 export default function Home(){
     const dispatch = useDispatch(); // 
@@ -63,7 +65,7 @@ export default function Home(){
     // console.log(allCountries)
     return(
         <div>
-            <div>
+            <div className={styles.selectAndButton}>
                 <button onClick={event => handleClick(event)} >Reload countries</button>
                 <Link to="/activity" ><button>Create activity</button></Link>
                 <Filtrado  /> {/* renderizo "Filtrado.jsx"  */}
@@ -73,13 +75,12 @@ export default function Home(){
                  />
                 <SearchBar /> {/* renderizo "SearchBar.jsx"  */}
             </div>
-            <h1>Country app</h1> 
-            <button onClick={event => handleClick(event)} style={{fontSize: 40}}>Country app</button>
-            <div>
+            <h1 className={styles.h1}>Country app</h1> 
+            <div  >
                 {currentCountries.length > 0  ? currentCountries.map(a =>{
                     // console.log(a)
                     return(
-                        <div key={a.id}>
+                        <div key={a.id} className={styles.card}  >
                             <Link to={`/home/${a.id}`} > {/* en Link to , va acceder a cada pais por el "/:id" de cada pais   */}
                                 <Card name = {a.name} // en <Card/> renderizo lo "Card.jsx" y hago un map elegir lo que quiero mostrar  
                                 flags={a.flags}
@@ -97,7 +98,7 @@ export default function Home(){
                  }
             </div>
 
-            <div>
+            <div className={styles.paginado}>
                 <footer>
                 <Paginado // renderizo "Paginado.jsx"
                 countriesPerPage={countriesPerPage} 

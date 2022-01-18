@@ -59,11 +59,16 @@ export function getNameCountry(name){ // get para traer pais/es por nombre
 
 export function getDetail(id){ // get para ver un pais por su id
     return async function(dispatch){
-        const json = await axios.get(`http://localhost:3001/countries/${id}`)
-        return dispatch({
-            type: GET_DETAIL,
-            payload: json.data
-        })
+        try{
+            const json = await axios.get(`http://localhost:3001/countries/${id}`)
+            return dispatch({
+                type: GET_DETAIL,
+                payload: json.data
+            })
+        }catch(error){
+            alert("There is no country with that id") 
+            console.log(error)
+        }
     }
 }
 

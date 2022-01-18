@@ -4,6 +4,7 @@ import LadingPage from './components/LadingPage';
 import Home from "./components/Home";
 import Detail from "./components/Detail";
 import { ActivityCreate } from "./components/ActivityCreate";
+import PageNotFound from "./components/PageNotFound";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/home" element={<Home/> } />
         <Route path="/home/:id" element={<Detail/>} />
         <Route path="/activity" element={<ActivityCreate/> } />
+        <Route path="*" element={<PageNotFound/>} />
       </Routes>
     </div>
     </BrowserRouter>

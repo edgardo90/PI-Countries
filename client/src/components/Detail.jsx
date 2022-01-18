@@ -2,7 +2,7 @@
 import React from "react";
 import { Link ,useParams} from "react-router-dom";
 import { useDispatch , useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getDetail } from "../actions";
 import CardActivities from "./CardActivities";
 
@@ -13,7 +13,15 @@ export default function Detail(){
     const myDetail = useSelector(state => state.detail); // traigo el pais en formato de objeto
 
     // console.log(id)
-     myDetail.activities && console.log(Object.values(myDetail.activities))
+    //  myDetail.activities && console.log(Object.values(myDetail.activities))
+
+    const [time , setTime] = useState("");
+
+    useEffect(()=>{
+        setTimeout(()=>{
+            setTime("ERROR 404 PAGE NOT FOUND")
+        },9000)
+    },[])
     
     useEffect(() =>{ // me va mostrar el pais por su id
         dispatch(getDetail(id))
@@ -43,12 +51,15 @@ export default function Detail(){
                         <img src="https://c.tenor.com/hL-eYI1tO0gAAAAM/manr%C3%BAssia-manresa.gif" width="250px" height="200px" alt="loading..." />
                     </a>
                 </div> : // sino muestra un gif
-                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/GIF_Mundo_Banderas.gif" alt="Loading..." />
+                 <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/GIF_Mundo_Banderas.gif" alt="Loading..." />
+                    <h1>{time} </h1>
+                 </div>
             }
             <br />
             <div>
                 {
-                    myDetail.activities && myDetail.activities.length > 0 ?  // si hay myDetail.activities hago un ternario  
+                    myDetail.activities &&  // si hay myDetail.activities hago un ternario  
                     myDetail.activities.map( m => {
                         return (
                             <div key={m.name + m.duration}>
@@ -60,7 +71,7 @@ export default function Detail(){
                                 /> 
                             </div>
                         )
-                    }) : <h2>Has no activities</h2> // si no hay nada muestro un h2  
+                    })  
                 } 
             </div>
 

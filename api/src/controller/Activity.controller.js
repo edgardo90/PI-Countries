@@ -21,7 +21,7 @@ const postActivity = async(req, res)=>{ // recibo los datos por body(el front) y
         where: {id: country }  // busco por su id(de Country.js) por destructuring que traigo country
     })
     for (let i of countryDb){
-        // console.log(i)
+        //  console.log(i)
         await i.addActivity(activityCreate.dataValues.id)
     }
     // console.log(activityCreate)
@@ -31,9 +31,6 @@ const postActivity = async(req, res)=>{ // recibo los datos por body(el front) y
 const getActivities = async(req , res) =>{ // funcion que trae todas las actividades
     const activities = await Activity.findAll(); // traigo todas mis actividades de la base de datos
     // console.log(activities);
-    if(activities.length === 0){ // si no hay nada devuelvo el mensaje que esta abajo
-        return res.status(404).send("no hay actividades");
-    }
     return res.status(200).send(activities); // si hay actividades las devuelvo todas
 }
 

@@ -1,0 +1,47 @@
+body  {
+    background-image: url(https://cdnnmundo1.img.sputniknews.com/img/106349/16/1063491674_0:99:1921:1179_1920x0_80_0_0_464d5ff18fcf3c1c278331d877386f2a.jpg.webp);
+    background-repeat: no-repeat; 
+    background-size: cover;
+    /* position: absolute; */
+    /* margin: 0; */
+    background-attachment: fixed
+  }
+  
+  
+  
+  .h1{
+    text-align: center;
+    margin-top: 10%;
+    color: rgb(0, 0, 0)  ;
+    font-family: 'Cookie', cursive;
+  } 
+
+.imagen{
+  margin-top: 2%;
+  border-radius: 9999px;
+  margin-left: 43%;
+}
+  
+  .landing button{
+      position: absolute; /*Le doy al boton que tenga una posicion absoluto  */
+      
+      display: flex;
+      padding-left: 25px;/* agrando el button hacia la izquierda  */
+      padding-right: 25px; /* agrando el button hacia la derecha */
+      padding-top: 10px; /*agrando el button hacia arriba  */
+      padding-bottom: 10px; /* agrando el button hacia abajo */
+      margin-left: 46.5%;/*muevo el button hacia la derecha  */
+      margin-top: 5%;
+  }
+  
+  .btn{
+    background-color: white;
+    border: none; /*saco el borde del boton  */
+    border-radius: 7px; /*le doy radio a los bordes del boton  */
+    color: rgb(0, 132, 255); /*cambio el color de la letra del boton  */
+  }
+  
+  .btn:hover{  /* cuando toco el button cambia */
+    background-color: #1febe2;
+    color:rgb(5, 1, 1);
+  }
