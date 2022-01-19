@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { getDetail } from "../actions";
 import CardActivities from "./CardActivities";
 
+import styles from "../components/cssComponets/Detail.module.css"
+
+
 export default function Detail(){
 
     const dispatch = useDispatch();
@@ -30,28 +33,27 @@ export default function Detail(){
 
     return(
         <div>
-            <Link to="/home"><button>Back to home</button></Link>
+            <Link  to="/home"><button className={styles.btn} >Back to home</button></Link>
             {
                 Object.values(myDetail).length > 0 ? // convierto myDetail en array 
                 <div>
-                    <h1>{myDetail.name}</h1>
-                    <img src={myDetail.flags} alt="loading..." />
-                    <h3>Id: {myDetail.id} <br />
-                    Continents: {myDetail.continents} </h3>
-                    <p>Capital: {myDetail.capital} <br />
+                    <h1 className={styles.name} >{myDetail.name}</h1>
+                    <img className={styles.imagen} src={myDetail.flags} alt="loading..." />
+                    <h3 className={styles.id} >Id: {myDetail.id} </h3>
+                    <h3 className={styles.id} >Continents: {myDetail.continents} </h3>
+                    <h5 className={styles.info}>Capital: {myDetail.capital} <br />
                     Subregion: {myDetail.subregion} <br />
                     Area: {myDetail.area} Km2 <br />
                     Population: {myDetail.population} <br /> 
-                    </p>
-                    <h3>Location by google maps 
-                        <br />
-                        <img src="https://static.wixstatic.com/media/b9b1dd_e511e564d35845b58ee4f3cd4a539c3d~mv2.gif" width="90px" height="90px" alt="down" />
-                    </h3>
-                    <a href={myDetail.maps}> {/* con <a/> me va redirecionar a otra pagina   */}
-                        <img src="https://c.tenor.com/hL-eYI1tO0gAAAAM/manr%C3%BAssia-manresa.gif" width="250px" height="200px" alt="loading..." />
-                    </a>
+                    </h5>
+                    <div className={styles.maps} >
+                        <h3>Location by google maps </h3>
+                         <a href={myDetail.maps}> {/* con <a/> me va redirecionar a otra pagina   */}
+                         <img src="https://cdn.dribbble.com/users/934248/screenshots/3122874/google-maps.gif" width="250px" height="200px" alt="loading..." />
+                         </a>
+                    </div>
                 </div> : // sino muestra un gif
-                 <div>
+                 <div className={styles.notCountry} >
                     <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/GIF_Mundo_Banderas.gif" alt="Loading..." />
                     <h1>{time} </h1>
                  </div>
@@ -62,7 +64,7 @@ export default function Detail(){
                     myDetail.activities &&  // si hay myDetail.activities hago un ternario  
                     myDetail.activities.map( m => {
                         return (
-                            <div key={m.name + m.duration}>
+                            <div className={styles.actividad} key={m.name + m.duration}>
                                 <CardActivities // renderizo "CardActivities.jsx"
                                 name={m.name}
                                 difficulty={m.difficulty}

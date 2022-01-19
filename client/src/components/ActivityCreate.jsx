@@ -3,10 +3,12 @@ import React from "react";
 import {useEffect,useState } from "react";
 import {useDispatch , useSelector} from "react-redux";
 import { Link , useNavigate } from "react-router-dom";
-import {getContinets,getCountries, filterContinets , postActivity } from "../actions";
+import {getContinets,getCountries, getActivities, filterContinets , postActivity } from "../actions";
 
+import styles from "../components/cssComponets/ActivityCreate.module.css"
 
 const regexNumber = /[A-Z\s]+$/i
+let todos 
 
 function validate(input){ // funcion para crear los errores
     const errors={};
@@ -14,6 +16,8 @@ function validate(input){ // funcion para crear los errores
         errors.name = "You must enter a name for the activity";
     }else if(!regexNumber.test(input.name) ){
         errors.name = "The name has to be only letters"
+    }else if(todos.includes(input.name)){
+        errors.name= "there's that name"
     }
     if (!input.duration) {
         errors.duration = "You must enter a duration for the activity"
@@ -25,11 +29,13 @@ function validate(input){ // funcion para crear los errores
 
 
 
+
 export function ActivityCreate(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const allContinets = useSelector(state => state.continentes )  // esto seria hacer lo mismo que el mapStateToProps, va ser un array con todas los continentes
     const allCountries = useSelector(state => state.countries ); // esto seria hacer lo mismo que el mapStateToProps, va ser un array con todas los paises
+    const allActivities = useSelector(state =>state.activities ) // esto seria hacer lo mismo que el mapStateToProps, va ser un array con todas las actividades
     const [data , setData] = useState({
         name:"",
         duration:"",
@@ -49,6 +55,16 @@ export function ActivityCreate(){
     useEffect(()=>{  // useEffect del get de paises ,  me va a mostrar los paises en mi pagina
         dispatch(getCountries() );
     },[dispatch])
+
+    useEffect(()=>{ // useEffect del get de actividades ,  me va mostratr todos las actividades
+        dispatch(getActivities() );
+    },[dispatch])
+
+    todos = allActivities.map( a =>{ // traigo en un array todos los nombres de las actvidades en un array
+        return a.name
+    })
+
+    console.log(todos)
 
 
     function handleFilterContinets(event){ // handle para filtrar por continentes , segun que continente seleccione van hacer los paises que se van a mostrar
@@ -134,9 +150,9 @@ export function ActivityCreate(){
     
     return(
         <div>
-            <Link to="/home"><button>Back to home</button></Link>
-            <h1>Create the activity</h1>
-           <form onSubmit={event => handleSubmit(event)}>
+            <Link to="/home"><button className={styles.botonHome} >Back to home</button></Link>
+            <h1 className={styles.titulo} >Create the activity</h1>
+           <form className={styles.formulario}  onSubmit={event => handleSubmit(event)}>
                <div>
                    <label >Name: </label>
                    <input
@@ -146,7 +162,7 @@ export function ActivityCreate(){
                     onChange={event =>handleChange(event)} 
                     />
                     {errors.name && 
-                     <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >{errors.name}</p>
+                     <p  style={{color: "red" , fontWeight: 700 , fontSize: 14}}  >{errors.name}</p>
                      }
                </div>
                <br /> {/*Dejo un espacio  */}
@@ -159,12 +175,12 @@ export function ActivityCreate(){
                    onChange={event =>handleChange(event)}
                    />
                    {errors.duration &&
-                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >{errors.duration}</p> 
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 14}}  >{errors.duration}</p> 
                     }
                </div>
                <br /> {/*Dejo un espacio  */}
                <div> 
-                   <label >Difficulty: </label>
+                   <label >Difficulty : /</label>
                    {difultad.map(d =>{
                        return(
                            <label key={d} > {d}:
@@ -179,12 +195,12 @@ export function ActivityCreate(){
                        )
                    })}
                    {!data.difficulty &&   // si no hay nada en dificultad va a mostrar el siguiente <p/>
-                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >select a difficulty </p>  
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 14}}  >select a difficulty </p>  
                     }
                </div>
                <br />{/*Dejo un espacio  */}
                <div>
-                   <label >Season:  </label>
+                   <label >Season :  /</label>
                    {temporada.map(s =>{
                        return(
                            <label key={s} > {s}:
@@ -199,12 +215,12 @@ export function ActivityCreate(){
                        )
                    } )}
                    {data.season.length === 0 &&   // si no hay nada temporada va a mostrar el siguiente <p/>
-                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >select a season </p>  
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 14}}  >select a season </p>  
                     }
                </div>
                <br />{/*Dejo un espacio  */}
-               <div>
-                   <select   onChange={event =>handleFilterContinets(event) } > {/* hago un onChange para que se aplique el cambio  */} 
+               <div  >
+                   <select  className={styles.select} onChange={event =>handleFilterContinets(event) } > {/* hago un onChange para que se aplique el cambio  */} 
                    <option value="All">All continents</option>
                    {allContinets && allContinets.map(a =>{ // utilizo allContinents  para rendirizar todas los continentes 
                     return(
@@ -212,7 +228,7 @@ export function ActivityCreate(){
                          )
                          } )}
                     </select>
-                    <select onChange={event =>handleSelect(event)} >
+                    <select className={styles.select} onChange={event =>handleSelect(event)} >
                      <option value="nada" >Select country or countries</option>
                     {allCountries && allCountries.map(a => { // utilizo allCountries  para rendirizar todas los continentes 
                     return(
@@ -221,20 +237,20 @@ export function ActivityCreate(){
                         } )}
                     </select>
                     {data.country.length === 0 &&   // si no hay nada temporada va a mostrar el siguiente <p/>
-                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 13}}  >select a country </p>  
+                    <p  style={{color: "red" , fontWeight: 700 , fontSize: 14}}  >select a country </p>  
                     }
                 </div>
                 <br />
 
-                <button  disabled={!data.name || !data.duration}  type="submit" > Crate activity </button>
+                <button  disabled={!data.name || !data.duration} className={styles.btnCreate}  type="submit" > Crate activity </button>
            </form>
 
            <br />
            {data.country.map(c =>{ // esto es para mostrar en el front lo que marco como paises 
                return(
-                   <div key={c}>
+                   <div className={styles.eleminar} key={c}>
                        <li >Aggregate country: {c}{" "} 
-                        <button   onClick={() => handleDelete(c)} >X</button> {/*muestra un boton para eleminar el pais que se seleciono  */}
+                        <button  className={styles.btn}   onClick={() => handleDelete(c)} >X</button> {/*muestra un boton para eleminar el pais que se seleciono  */}
                        </li>
                    </div>
                )

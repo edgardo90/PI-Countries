@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameCountry } from "../actions";
 
+import styles from "../components/cssComponets/SearchBar.module.css"
+
 export default function SearchBar(){
     const dispatch = useDispatch();
     const [data , setData] = useState("");
@@ -23,12 +25,13 @@ export default function SearchBar(){
     return(
         <div>
             <input
+            className={styles.input}
             type="text"
             placeholder="Search country..."
             value={data}
             onChange={event => handleChange(event)}
             />
-            <button type="submit" onClick={event => handleSubmit(event)} >Search</button>
+            <button className={styles.button} type="submit" onClick={event => handleSubmit(event)} >Search</button>
         </div>
     )
 }

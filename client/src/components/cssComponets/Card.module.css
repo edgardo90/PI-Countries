@@ -1,0 +1,23 @@
+
+.title{   /* cambio el formato del titulo  */
+    text-align: center; /* centro el texto  */
+    font-family: 'Cookie', cursive;
+    font-size: 17px;
+    /* font-weight: bold; */
+    /* margin-top: -35%; */
+    /* height: 60px; */
+    /* margin-bottom: 10%; */
+}
+
+
+.imagen{
+    justify-content: center;
+    object-fit: cover;
+}
+
+
+.leter{   /* cambio el formato del titulo  */
+    font-family: 'Cookie', cursive;
+    font-size: 15px;
+    margin-left: 20%;     /*muevo el button hacia la derecha  */
+}

@@ -66,9 +66,9 @@ export default function Home(){
     return(
         <div>
             <div className={styles.selectAndButton}>
-                <button onClick={event => handleClick(event)} >Reload countries</button>
-                <Link to="/activity" ><button>Create activity</button></Link>
-                <Filtrado  /> {/* renderizo "Filtrado.jsx"  */}
+                <button className={styles.button} onClick={event => handleClick(event)} >Reload countries</button>
+                <Link to="/activity" ><button className={styles.button}  >Create activity</button></Link>
+                <Filtrado   /> {/* renderizo "Filtrado.jsx"  */}
                 <Ordenamiento // renderizo Ordenamiento.jsx
                 setCurrentPage={setCurrentPage} 
                 setOrder={setOrder}
@@ -81,7 +81,7 @@ export default function Home(){
                     // console.log(a)
                     return(
                         <div key={a.id} className={styles.card}  >
-                            <Link to={`/home/${a.id}`} > {/* en Link to , va acceder a cada pais por el "/:id" de cada pais   */}
+                            <Link className={styles.color} to={`/home/${a.id}`} > {/* en Link to , va acceder a cada pais por el "/:id" de cada pais   */}
                                 <Card name = {a.name} // en <Card/> renderizo lo "Card.jsx" y hago un map elegir lo que quiero mostrar  
                                 flags={a.flags}
                                 continents={a.continents}
@@ -91,7 +91,7 @@ export default function Home(){
                         </div>
                     )
                 })
-                 : <div> 
+                 : <div className={styles.notCountryes} > 
                      <img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/GIF_Mundo_Banderas.gif" alt="Loading" /> 
                      <h1>{currentCountries.length < 1 && time} </h1> {/*si no hay nada para mostrar va mostrar el time  */}
                  </div>

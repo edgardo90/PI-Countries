@@ -3,6 +3,8 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import {  ordenByName } from "../actions";
 
+import styles from "../components/cssComponets/Filtrado.module.css"
+
 
 export function Ordenamiento({setCurrentPage , setOrder}){ // traigo setCurrentPage , setOrder de "Home.jsx"
     const dispatch = useDispatch();
@@ -18,7 +20,7 @@ export function Ordenamiento({setCurrentPage , setOrder}){ // traigo setCurrentP
 
     return(
         <div>
-            <select onChange={event => handleSortName(event)} >  {/* hago un onChange para que se aplique el cambio  */} 
+            <select  className={styles.select}  onChange={event => handleSortName(event)} >  {/* hago un onChange para que se aplique el cambio  */} 
                 <option label="Order..."></option>
                 <option value="a-z">Countries A-Z</option>
                 <option value="z-a">Countries Z-A</option> 

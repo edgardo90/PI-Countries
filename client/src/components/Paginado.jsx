@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "../components/cssComponets/SearchBar.module.css"
+
 
 export default function Paginado({ allCountries , countriesPerPage ,paginado  }){
     const pageNumber = []; // array para guardar cada numero del for
@@ -13,7 +15,7 @@ export default function Paginado({ allCountries , countriesPerPage ,paginado  })
                 { pageNumber && // si hay pageNUmbers que haga un map
                  pageNumber.map(p =>{
                     return( // como es un map acordarse de poner un return
-                        <button key={p} onClick={()=> paginado(p)} > {p} </button>
+                        <button key={p}  className={styles.paginado}  onClick={()=> paginado(p)} > {p} </button>
                     )
                 } )}
             </ul>

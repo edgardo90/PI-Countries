@@ -21,30 +21,17 @@
 }
 
 
-.selectAndButton:hover{ /*cambia el color  */
+.selectAndButton:hover{ /*cambia el color cunado el mouse va ahi  */
     background-color: rgba(27, 29, 122, 0.336);
 }
 
-select{ /* modifico los select  */
-    color: black;
-    border-radius: 7px;
-    border: none;
-}
-select:hover{ /*cambia cuando toco los select  */
-    background-color: rgba(160, 208, 212, 0.459);
-    color: white;
-    padding-left: 15px;/* agrando el button hacia la izquierda  */
-    padding-right: 15px; /* agrando el button hacia la derecha */
-    padding-top: 5px; /*agrando el button hacia arriba  */
-    padding-bottom: 5px; /* agrando el button hacia abajo */
-    border-radius: 15px;
-}
 
-button{
+.button{
     border: none;
     border-radius: 7px;
+    font-family: 'Cookie', cursive;
 }
-button:hover{
+.button:hover{   /*cambia el botton cuando el mouse pasa por ahi  */
     background-color: rgba(160, 208, 212, 0.459);
     color: white;
     padding-left: 15px;/* agrando el button hacia la izquierda  */
@@ -56,27 +43,50 @@ button:hover{
 
 
 .card{
-    /* border: 1px solid #999; */ 
+    /* border: 1px solid #999;  */
     box-sizing: border-box;
-    /* color: #444; */
-    color: white;
     display: inline-block; /*lo deja en fila tipo en bloke, en este caso fila de 3  */
     margin: 5%;
     padding: 1em;
     vertical-align: top;
     width: 33,5%; /* hace que la fila este ordenada  */
     /* background-color: white; */
-    /* background-color: black; */
+}
+.card:hover{ /*cambia cuando se toca el pais  */
+    border: 1px solid #999; 
+    background-color: rgba(255, 255, 255, 0.151);
+    border-radius: 15px;
+    padding-left: 20px;/* agrando el button hacia la izquierda  */
+    padding-right: 20px; /* agrando el button hacia la derecha */
+    padding-top: 10px; /*agrando el button hacia arriba  */
+    padding-bottom: 10px; /* agrando el button hacia abajo */
+    border-radius: 15px;
 }
 
 
+.notCountryes{
+    text-align: center;
+}
+
+.color{
+    color: #fff; 
+}
+.color:hover{
+    color: rgb(0, 4, 53);
+    height: 80px;
+    width: 100%;
+}
 
 .paginado{
      display: flex;
     display: inline-block;
     justify-content:center;
-    margin-left: 29%;     /*muevo el button hacia la derecha  */
+    margin-left: 35%;
+    margin-right: 35%; 
 }
+
+
+
 
 
   

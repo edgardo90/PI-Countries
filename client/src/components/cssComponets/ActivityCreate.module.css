@@ -1,0 +1,96 @@
+.botonHome{
+    border: none;
+    border-radius: 7px;
+    font-family: 'Cookie', cursive;
+    padding-left: 10px;/* agrando el button hacia la izquierda  */
+    padding-right: 10px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+}
+.botonHome:hover{
+    background-color: rgba(160, 208, 212, 0.842);
+    color: rgb(11, 2, 51);
+    padding-left: 20px;/* agrando el button hacia la izquierda  */
+    padding-right: 20px; /* agrando el button hacia la derecha */
+    padding-top: 10px; /*agrando el button hacia arriba  */
+    padding-bottom: 10px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}
+
+
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 50px;
+    color: rgb(14, 1, 1);
+    font-family: 'Cookie', cursive;
+  }
+
+  .formulario{
+    margin-left: 30%;
+    margin-right: 25%;
+    padding: 50px;
+    font-size: 20px; 
+    background-position: center center;
+    color: rgb(0, 0, 0);
+    font-family: 'Cookie', cursive;
+  }
+
+  .select{
+    color: black;
+    border-radius: 7px;
+    border: none;
+    /* font-family: 'Cookie', cursive; */
+    
+  }
+  .select:hover{
+    background-color: rgba(160, 208, 212, 0.822);
+    color: white;
+    padding-left: 15px;/* agrando el button hacia la izquierda  */
+    padding-right: 15px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+  }
+  
+
+  .btnCreate{
+    padding-left: 25px;/* agrando el button hacia la izquierda  */
+    padding-right: 25px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border: none;
+    border-radius: 10px;
+    margin-left: 30%;
+    font-family: 'Cookie', cursive;
+  }
+  .btnCreate:hover{
+      border-radius: 10px;
+    background-color:rgb(158, 210, 231);
+    color:white;
+  }
+
+  .eleminar{
+    margin-top: 0;
+    margin-left: 34%;
+    margin-right: 30%; 
+    background-position: center center;
+    color: rgb(232, 227, 241);
+    font-family: 'Cookie', cursive;
+    font-size: 22px
+  }
+
+  .btn{
+      border-radius: 10px;
+      background-color: red;
+      border: none;
+  }
+
+  .btn:hover{
+      color: white;
+      border:solid;
+  }
+
+

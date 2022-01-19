@@ -1,0 +1,50 @@
+.button{ 
+    border: none;
+    border-radius: 7px;
+    font-family: 'Cookie', cursive;
+}
+.button:hover{
+    background-color: rgba(160, 208, 212, 0.459);
+    color: white;
+    padding-left: 15px;/* agrando el button hacia la izquierda  */
+    padding-right: 15px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}
+
+
+.input{
+    border: none;
+    border-radius: 7px;
+    font-family: 'Cookie', cursive;
+}
+
+.input:hover{
+    background-color: rgba(160, 208, 212, 0.459);
+    color: rgb(255, 255, 255);
+    padding-left: 15px;/* agrando el button hacia la izquierda  */
+    padding-right: 15px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}
+
+
+
+
+
+.paginado{ 
+    border: none;
+    border-radius: 7px;
+    font-family: 'Cookie', cursive;
+}
+.paginado:hover{
+    background-color: rgba(160, 208, 212, 0.459);
+    color: white;
+    padding-left: 5px;/* agrando el button hacia la izquierda  */
+    padding-right: 5px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}

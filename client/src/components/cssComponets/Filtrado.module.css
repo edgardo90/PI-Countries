@@ -1,0 +1,15 @@
+.select{ /* modifico los select  */
+    color: black;
+    border-radius: 7px;
+    border: none;
+    font-family: 'Cookie', cursive;
+}
+.select:hover{ /*cambia cuando toco los select  */
+    background-color: rgba(160, 208, 212, 0.459);
+    color: white;
+    padding-left: 15px;/* agrando el button hacia la izquierda  */
+    padding-right: 15px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}

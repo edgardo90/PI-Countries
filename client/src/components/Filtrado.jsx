@@ -4,6 +4,8 @@ import {useEffect, } from "react";
 import {useDispatch , useSelector} from "react-redux";
 import {getContinets, getActivities,filterContinets , filterActivities } from "../actions";
 
+import styles from "../components/cssComponets/Filtrado.module.css"
+
 export default function Filtrado(){
     const dispatch = useDispatch()
     const allContinets = useSelector(state => state.continentes )  // esto seria hacer lo mismo que el mapStateToProps, va ser un array con todas los continentes
@@ -31,8 +33,8 @@ export default function Filtrado(){
     // allActivities.map(a => console.log(a.name))
     // console.log(allContinets)
     return(
-        <div>
-            <select   onChange={event =>handleFilterContinets(event) } > {/* hago un onChange para que se aplique el cambio  */} 
+        <div  >
+            <select  className={styles.select}  onChange={event =>handleFilterContinets(event) } > {/* hago un onChange para que se aplique el cambio  */} 
                 <option value="All">Filter by continents/ all continents</option>
                 {allContinets && allContinets.map(a =>{ // utilizo allContinents  para rendirizar todas los continentes 
                     return(
@@ -40,7 +42,7 @@ export default function Filtrado(){
                     )
                 } )}
             </select>
-            <select  onChange={event => handleFilterActivities(event)} > {/* hago un onChange para que se aplique el cambio  */} 
+            <select className={styles.select}  onChange={event => handleFilterActivities(event)} > {/* hago un onChange para que se aplique el cambio  */} 
                 <option value="todos" >Filter by activities/ all countries</option>
                 <option value="All">All activities</option>
                 {allActivities && allActivities.map(a =>{ // utilizo allContinents  para rendirizar todas los continentes
