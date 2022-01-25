@@ -1,0 +1,23 @@
+.notCountry{
+    margin-top: 7%;
+    text-align: center;
+}
+
+.btn{
+    border: none;
+    border-radius: 7px;
+    font-family: 'Cookie', cursive;
+    padding-left: 10px;/* agrando el button hacia la izquierda  */
+    padding-right: 10px; /* agrando el button hacia la derecha */
+    padding-top: 5px; /*agrando el button hacia arriba  */
+    padding-bottom: 5px; /* agrando el button hacia abajo */
+}
+.btn:hover{
+    background-color: rgba(160, 208, 212, 0.842);
+    color: rgb(11, 2, 51);
+    padding-left: 20px;/* agrando el button hacia la izquierda  */
+    padding-right: 20px; /* agrando el button hacia la derecha */
+    padding-top: 10px; /*agrando el button hacia arriba  */
+    padding-bottom: 10px; /* agrando el button hacia abajo */
+    border-radius: 15px;
+}

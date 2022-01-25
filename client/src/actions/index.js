@@ -12,10 +12,13 @@ import {
 } from "./types"
 import axios from "axios";
 
+
+// la funciones con promesas funciona gracias a redux thunk , es un middleware que permite trabjar con sincronia
+
 export function getCountries(){ // get para traer todos los paises
-    return async function(dispatch){ 
-        const json = await axios.get("http://localhost:3001/countries"); // creo una const de nombre "json" que va tener lo que ese get
-        return dispatch({
+    return async function(dispatch){  // aca lo que  hago es despchar(dispatch) la funcion asyncrona
+        const json = await axios.get("http://localhost:3001/countries"); // creo una const de nombre "json" que va tener lo que ese get , esto es una promea
+        return dispatch({ // aca retorno la funcion que descache ( dispatch)
             type: GET_COUNTRIES, 
             payload : json.data
         })

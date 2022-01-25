@@ -110,7 +110,7 @@ function reducer(state = initialState,{type , payload}){ // por destructuring tr
             }) :
             payload === "asc" ? state.countries.sort((a, b) => {return a.population-b.population} ) : 
             payload === "des" ? state.countries.sort((a,b) => {return b.population - a.population} ) :
-            state.countries.sort((a,b) => {return b.name - a.name} )
+            state.countries
             return{
                 ...state,
                 countries: orderName,

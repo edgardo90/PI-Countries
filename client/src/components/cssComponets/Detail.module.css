@@ -77,28 +77,28 @@
 
 }
 
+.google{
+    border-radius: 25px;
+}
+
 .actividad{
-    /* border: 1px solid #999;  */
+    border: 1px solid #999; 
+    background-color: rgba(255, 255, 255, 0.562);
     box-sizing: border-box;
     display: inline-block; /*lo deja en fila tipo en bloke, en este caso fila de 3  */
     margin: 5%;
     padding: 1em;
     vertical-align: top;
     width: 33,5%; /* hace que la fila este ordenada  */
-    /* background-color: white; */
+    border-radius: 15px;
 }
 .actividad:hover{
-    border: 1px solid #999; 
-    background-color: rgba(255, 255, 255, 0.562);
-    border-radius: 15px;
-    padding-left: 20px;/* agrando el button hacia la izquierda  */
-    padding-right: 20px; /* agrando el button hacia la derecha */
-    padding-top: 10px; /*agrando el button hacia arriba  */
-    padding-bottom: 10px; /* agrando el button hacia abajo */
-    border-radius: 15px;
+    background-color: rgba(13, 108, 172, 0.726);
+    
 }
 
 .notCountry{
+    margin-top: 10%;
     text-align: center;
 }
 
