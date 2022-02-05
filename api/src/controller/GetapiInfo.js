@@ -23,7 +23,7 @@ const getApiInfo = async () =>{ // funcion para traer cosas en la api y crear ba
         }
     })
     resultUrl.forEach(p =>{ // creo la base de datos Country
-        Country.findOrCreate({
+        Country.findOrCreate({ // el findOrcreate() de sequilize hace que no se repita si ya esta creado
             where: { id: p.id }, // con esto hago que me deje tirar error de id
                defaults:{ // despues creo objeto defaults para hacer lo demas 
                 id: p.id,

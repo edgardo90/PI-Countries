@@ -12,7 +12,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-router.use("/countries", Country); // ruta de paises , traer pais/es por su nombre , traer pais por su id 
+router.use("/countries", Country); //acordarse de usar router.use ,  ruta de paises , traer pais/es por su nombre , traer pais por su id 
 
 router.use("/continents", Continents ) // ruta de continentes , trae en un array todos los continentes
 
