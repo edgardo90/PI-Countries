@@ -7,20 +7,24 @@ const {getApiInfo} = require("../controller/GetapiInfo") // traigo la funcion qu
 
 
 const getAll = async(req , res)=>{ // este get trae todas los paises desde mi base de datos o si hay algo en query trae lo que trae por query
-    const {name} = req.query;
-    let paises = await getApiInfo();
-    if(name){
-        let namePais = await paises.filter(p => p.name.toLowerCase().includes(name.toLocaleLowerCase()) );
-        if(namePais.length >0){
-            return res.status(200).send(namePais)
-        }else{
-            return res.status(404).send("no se encuentra el pais")
+    try{
+        const {name} = req.query;
+        let paises = await getApiInfo();
+        if(name){
+            let namePais = await paises.filter(p => p.name.toLowerCase().includes(name.toLocaleLowerCase()) );
+            if(namePais.length >0){
+                return res.status(200).send(namePais)
+            }else{
+                return res.status(404).send("no se encuentra el pais")
+            }
         }
+        // console.log(paises)
+        // paises.forEach(p => console.log(p.id))
+        // paises.forEach(p => console.log(p.maps))
+        return res.status(200).send(paises)
+    }catch(error){
+        res.send(error)
     }
-    // console.log(paises)
-    // paises.forEach(p => console.log(p.id))
-    // paises.forEach(p => console.log(p.maps))
-    return res.status(200).send(paises)
 }
 
 
